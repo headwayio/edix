@@ -11,4 +11,4 @@ crate-type = ["cdylib"]
 
 [dependencies]
 rustler = "0.32.1"
-edi = { git = "https://github.com/headwayio/edi.git" }
+edi = { version = "0.2.1", git = "https://github.com/headwayio/edi.git" }

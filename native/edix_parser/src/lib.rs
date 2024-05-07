@@ -1,10 +1,3 @@
-// Purpose of this is to force precompilation to include schemas.csv
-// schemas.csv is required by transaction.rs
-#[rustler::nif]
-fn main() {
-    include_bytes!("../resources/schemas.csv");
-}
-
 use edi::parse;
 use rustler::NifStruct;
 use std::fs::read_to_string;
@@ -31,4 +24,4 @@ fn parse_edi_file(input: String) -> Result<EdixDocument, EdixParseError> {
     return Ok(edix_document);
 }
 
-rustler::init!("Elixir.Edix.Parser", [main, parse_edi_file]);
+rustler::init!("Elixir.Edix.Parser", [parse_edi_file]);

@@ -105,8 +105,8 @@ dependencies = [
 
 [[package]]
 name = "edi"
-version = "0.2.0"
-source = "git+https://github.com/headwayio/edi.git#7fdf7356cbf1f558528f429daffae1ff8b4ffdd1"
+version = "0.2.1"
+source = "git+https://github.com/headwayio/edi.git#28d32e9223b261de10694eedc8919062ea5ff509"
 dependencies = [
  "csv",
  "lazy_static",
