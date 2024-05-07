@@ -5,6 +5,6 @@ defmodule Edix.Parser do
   def add(_a, _b), do: :erlang.nif_error(:nif_not_loaded)
 
   # When your NIF is loaded, it will override this function.
-  def parse_edi_file(path), do: :erlang.nif_error(:nif_not_loaded)
+  def parse_edi_file(_path), do: :erlang.nif_error(:nif_not_loaded)
 end
 
