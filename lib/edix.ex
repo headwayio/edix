@@ -21,8 +21,8 @@ defmodule Edix do
 
   ## Examples
 
-      iex> Edix.parse_edi_file("path/to/edi/file")
-      {:ok, %{}}
+      iex> Edix.parse_edi_file("sample.edi")
+      {:ok, %EdixDocument{name: "915792US00"}}
 
   """
   def parse_edi_file(path) do
