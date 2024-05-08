@@ -1,3 +1,3 @@
 %{
-  "libedix_parser-v0.1.3-nif-2.15-aarch64-apple-darwin.so.tar.gz" => "sha256:8993bcdc6cd64eebe1ac0c6836bbaeb5b9e22122e9464d52a8eb799509158f37",
+  "libedix_parser-v0.1.4-nif-2.15-aarch64-apple-darwin.so.tar.gz" => "sha256:8ca23ab924e728f4ccaabb1808afedb48d9bf4023d3764748317847f38690bc1",
 }
