@@ -10,7 +10,7 @@ by adding `edix` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:edix, "~> 0.1.4"}
+    {:edix, "~> 0.1.5"}
   ]
 end
 ```

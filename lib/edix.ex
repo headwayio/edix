@@ -8,19 +8,9 @@ defmodule Edix do
 
   ## Examples
 
-      iex> Edix.parse_edi_file("sample.edi")
-      {:ok, %EdixDocument{
-                envelope: [
-                  %Edix.EdixInterchangeControl{
-                    authorization_information: "",
-                    authorization_qualifier: "00",
-                    security_qualifier: "00"
-                  }
-                ],
-                element_delimiter: "*",
-                segment_delimiter: "~",
-                sub_element_delimiter: ">"
-              }}
+      iex> {:ok, edix_document} = Edix.parse_edi_file("sample.edi")
+      ...> edix_document.segment_delimiter
+      "~"
 
   """
   def parse_edi_file(path) do

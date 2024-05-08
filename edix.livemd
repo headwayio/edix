@@ -4,8 +4,9 @@
 
 ```elixir
 Mix.install([
+  {:kino, "~> 0.12.3"},
   {:kino_explorer, "~> 0.1.19"},
-  {:edix, github: "headwayio/edix", version: "~> 0.1.4"}
+  {:edix, github: "headwayio/edix", version: "~> 0.1.5"}
 ])
 ```
 
@@ -18,16 +19,5 @@ sample_edi_file = Kino.FS.file_path("sample.edi")
 ```elixir
 {:ok, edix_document} = Edix.parse_edi_file(sample_edi_file)
 
-edix_map =
-  edix_document
-  |> Map.from_struct()
-
-envelope =
-  edix_map[:envelope]
-  |> Enum.map(&Map.from_struct/1)
-  |> dbg()
-
-edix_map = Map.put(edix_map, :envelope, envelope)
-
-Explorer.DataFrame.new([edix_map])
+Kino.Shorts.tree(edix_document)
 ```
