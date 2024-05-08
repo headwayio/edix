@@ -1,6 +1,6 @@
 # Edix
 
-**TODO: Add description**
+[![Run in Livebook](https://livebook.dev/badge/v1/blue.svg)](https://livebook.dev/run?url=https://github.com/headwayio/edix/blob/main/edix.livemd)
 
 ## Installation
 
@@ -10,7 +10,7 @@ by adding `edix` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:edix, "~> 0.1.0"}
+    {:edix, "~> 0.1.4"}
   ]
 end
 ```
