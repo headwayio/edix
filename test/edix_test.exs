@@ -5,11 +5,20 @@ defmodule EdixTest do
 
   doctest Edix
 
-  test "greets the world" do
-    assert Edix.hello() == :world
-  end
-
   test "parse edi file" do
-    assert Edix.parse_edi_file("./sample.edi") == {:ok, %EdixDocument{name: "915792US00"}}
+    assert Edix.parse_edi_file("./sample.edi") ==
+             {:ok,
+              %EdixDocument{
+                envelope: [
+                  %Edix.EdixInterchangeControl{
+                    authorization_information: "",
+                    authorization_qualifier: "00",
+                    security_qualifier: "00"
+                  }
+                ],
+                element_delimiter: "*",
+                segment_delimiter: "~",
+                sub_element_delimiter: ">"
+              }}
   end
 end

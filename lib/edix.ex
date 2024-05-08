@@ -4,25 +4,23 @@ defmodule Edix do
   """
 
   @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> Edix.hello()
-      :world
-
-  """
-  def hello do
-    :world
-  end
-
-  @doc """
   Parse EDI file by pathname.
 
   ## Examples
 
       iex> Edix.parse_edi_file("sample.edi")
-      {:ok, %EdixDocument{name: "915792US00"}}
+      {:ok, %EdixDocument{
+                envelope: [
+                  %Edix.EdixInterchangeControl{
+                    authorization_information: "",
+                    authorization_qualifier: "00",
+                    security_qualifier: "00"
+                  }
+                ],
+                element_delimiter: "*",
+                segment_delimiter: "~",
+                sub_element_delimiter: ">"
+              }}
 
   """
   def parse_edi_file(path) do
