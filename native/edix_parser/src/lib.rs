@@ -28,6 +28,7 @@ struct EdixTransactionSet {
     transaction_set_identifier_code: String,
     transaction_set_date: String,
     transaction_set_time: String,
+    transaction_set_name: String,
     transaction_set_segments: Vec<EdixSegment>,
 }
 
@@ -42,6 +43,7 @@ impl<'a> Decoder<'a> for EdixTransactionSet {
                 .decode()?,
             transaction_set_date: term.map_get("transaction_set_date")?.decode()?,
             transaction_set_time: term.map_get("transaction_set_time")?.decode()?,
+            transaction_set_name: term.map_get("transaction_set_name")?.decode()?,
             transaction_set_segments: term.map_get("transaction_set_segments")?.decode()?,
         })
     }
@@ -154,6 +156,7 @@ fn parse_edi_file(input: String) -> Result<EdixDocument, EdixParseError> {
                 }
 
                 let edix_transaction_set = EdixTransactionSet {
+                    transaction_set_name: transaction_set.transaction_name.to_string(),
                     transaction_set_control_number: transaction_set
                         .transaction_set_control_number
                         .to_string(),

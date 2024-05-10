@@ -60,6 +60,7 @@ defmodule EdixTest do
 
     assert transaction_set.transaction_set_control_number == "0001"
     assert transaction_set.transaction_set_identifier_code == "204"
+    assert transaction_set.transaction_set_name == "Motor Carrier Load Tender"
     assert transaction_set.transaction_set_date == "transaction_set.date.to_string()"
 
     assert transaction_set.transaction_set_time ==
