@@ -1,42 +1,13 @@
 defmodule EdixTest do
   use ExUnit.Case
 
-  alias Edix.EdixDocument
+  # alias Edix.EdixDocument
 
   doctest Edix
 
   test "parse edi file" do
     {:ok, edix_document} = Edix.parse_edi_file("./sample.edi")
 
-    transaction_set_segments = [
-      %Edix.EdixSegment{
-        segment_identifier: "B2",
-        segment_data: ["", "8TMW", "", "34029920", "", "CC"]
-      }
-    ]
-
-    transaction_sets = [
-      %Edix.EdixTransactionSet{
-        transaction_set_control_number: "0001",
-        transaction_set_identifier_code: "204",
-        transaction_set_date: "",
-        transaction_set_time: "1616",
-        transaction_set_segments: transaction_set_segments
-      }
-    ]
-
-    functional_groups = [
-      %Edix.EdixFunctionalGroup{
-        functional_group_control_number: "SM",
-        application_sender_code: "915792US00",
-        application_receiver_code: "8TMW",
-        date: "20240429",
-        time: "0614",
-        group_reference_number: "SM",
-        transaction_set_control_number: "SM",
-        transaction_sets: transaction_sets
-      }
-    ]
 
     assert edix_document.element_delimiter == "*"
     assert edix_document.segment_delimiter == "~"
@@ -60,6 +31,7 @@ defmodule EdixTest do
 
     assert transaction_set.transaction_set_control_number == "0001"
     assert transaction_set.transaction_set_identifier_code == "204"
+    assert transaction_set.transaction_set_name == "Motor Carrier Load Tender"
     assert transaction_set.transaction_set_date == "transaction_set.date.to_string()"
 
     assert transaction_set.transaction_set_time ==
