@@ -1,4 +1,4 @@
-use edi::parse;
+use edi::parse as edi_parse;
 use rustler::Decoder;
 use rustler::NifStruct;
 use std::fs::read_to_string;
@@ -112,7 +112,7 @@ impl<'a> Decoder<'a> for EdixInterchangeControl {
 #[derive(Debug, NifStruct)]
 #[module = "Edix.EdixDocument"]
 #[rustler(encode)]
-struct EdixDocument {
+pub struct EdixDocument {
     envelope: Vec<EdixInterchangeControl>,
     segment_delimiter: String,
     sub_element_delimiter: String,
@@ -121,14 +121,23 @@ struct EdixDocument {
 
 #[derive(Debug, NifStruct)]
 #[module = "Edix.EdixParseError"]
-struct EdixParseError {
+pub struct EdixParseError {
     reason: String,
 }
 
 #[rustler::nif]
-fn parse_edi_file(input: String) -> Result<EdixDocument, EdixParseError> {
+pub fn parse_file(input: String) -> Result<EdixDocument, EdixParseError> {
     let edi_string = read_to_string(&input).unwrap();
-    let edi_document = parse(&edi_string).unwrap();
+    parse_content(edi_string)
+}
+
+#[rustler::nif]
+pub fn parse(input: String) -> Result<EdixDocument, EdixParseError> {
+    parse_content(input)
+}
+
+fn parse_content(input: String) -> Result<EdixDocument, EdixParseError> {
+    let edi_document = edi_parse(&input).unwrap();
 
     let mut interchanges = Vec::new();
 
@@ -206,7 +215,8 @@ fn parse_edi_file(input: String) -> Result<EdixDocument, EdixParseError> {
         sub_element_delimiter: edi_document.sub_element_delimiter.to_string(),
         element_delimiter: edi_document.element_delimiter.to_string(),
     };
+
     Ok(edix_document)
 }
 
-rustler::init!("Elixir.Edix.Parser", [parse_edi_file]);
+rustler::init!("Elixir.Edix.Parser", [parse, parse_file]);
