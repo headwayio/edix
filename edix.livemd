@@ -6,7 +6,7 @@
 Mix.install([
   {:kino, "~> 0.12.3"},
   {:kino_explorer, "~> 0.1.19"},
-  {:edix, github: "headwayio/edix", version: "~> 0.1.5"}
+  {:edix, github: "headwayio/edix", version: "~> 0.1.6"}
 ])
 ```
 
@@ -17,7 +17,7 @@ sample_edi_file = Kino.FS.file_path("sample.edi")
 ```
 
 ```elixir
-{:ok, edix_document} = Edix.parse_edi_file(sample_edi_file)
+{:ok, edix_document} = Edix.parse_file(sample_edi_file)
 
 Kino.Shorts.tree(edix_document)
 ```
