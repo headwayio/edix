@@ -137,11 +137,19 @@ pub fn parse(input: String) -> Result<EdixDocument, EdixParseError> {
 }
 
 fn parse_content(input: String) -> Result<EdixDocument, EdixParseError> {
-    let edi_document = edi_parse(&input).unwrap();
+    let edi_document = edi_parse(&input);
+
+    if edi_document.is_err() {
+        return Err(EdixParseError {
+            reason: edi_document.err().unwrap().to_string(),
+        });
+    }
+
+    let unwrapped_edi_document = edi_document.unwrap();
 
     let mut interchanges = Vec::new();
 
-    for interchange in edi_document.interchanges {
+    for interchange in unwrapped_edi_document.interchanges {
         let mut functional_groups = Vec::new();
 
         for functional_group in interchange.functional_groups {
@@ -211,9 +219,9 @@ fn parse_content(input: String) -> Result<EdixDocument, EdixParseError> {
 
     let edix_document = EdixDocument {
         envelope: interchanges,
-        segment_delimiter: edi_document.segment_delimiter.to_string(),
-        sub_element_delimiter: edi_document.sub_element_delimiter.to_string(),
-        element_delimiter: edi_document.element_delimiter.to_string(),
+        segment_delimiter: unwrapped_edi_document.segment_delimiter.to_string(),
+        sub_element_delimiter: unwrapped_edi_document.sub_element_delimiter.to_string(),
+        element_delimiter: unwrapped_edi_document.element_delimiter.to_string(),
     };
 
     Ok(edix_document)

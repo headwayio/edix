@@ -1,3 +1,3 @@
 defmodule Edix.EdixParseError do
-  defstruct name: "EdixParseError", message: "EDI parse error."
+  defstruct reason: "EDI parse error."
 end

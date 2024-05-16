@@ -47,4 +47,15 @@ defmodule EdixTest do
     {:ok, edix_document} = Edix.parse(edi_string)
     assert_edix_document(edix_document)
   end
+
+  test "parse invalid edi string" do
+    # NOTE: `invalid-sample.edi` is a copy of `sample.edi` but with a missing end-of-line `~` on the first line
+    edi_string = File.read!("./invalid-sample.edi")
+    {:error, edix_error} = Edix.parse(edi_string)
+
+    assert edix_error == %Edix.EdixParseError{
+             reason:
+               "Error parsing input into EDI document functional group validation failed: mismatched ID  --  expected: 204299166  received: 204299166~"
+           }
+  end
 end
