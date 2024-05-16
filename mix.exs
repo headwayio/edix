@@ -9,7 +9,8 @@ defmodule Edix.MixProject do
       version: @version,
       elixir: "~> 1.15",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      package: package()
     ]
   end
 
@@ -30,6 +31,19 @@ defmodule Edix.MixProject do
       {:rustler_precompiled, "~> 0.7.1", runtime: false},
       {:rustler, ">= 0.0.0", optional: true},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false}
+    ]
+  end
+
+  defp package do
+    [
+      files: [
+        "lib",
+        "native/edix_parser/.cargo",
+        "native/edix_parser/src",
+        "native/edix_parser/Cargo*",
+        "checksum-*.exs",
+        "mix.exs"
+      ]
     ]
   end
 end
