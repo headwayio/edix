@@ -3,6 +3,15 @@ defmodule Edix do
   Documentation for `Edix`.
   """
 
+  require Protocol
+
+  Protocol.derive(Jason.Encoder, Edix.EdixDocument)
+  Protocol.derive(Jason.Encoder, Edix.EdixFunctionalGroup)
+  Protocol.derive(Jason.Encoder, Edix.EdixInterchangeControl)
+  Protocol.derive(Jason.Encoder, Edix.EdixParseError)
+  Protocol.derive(Jason.Encoder, Edix.EdixSegment)
+  Protocol.derive(Jason.Encoder, Edix.EdixTransactionSet)
+
   @doc """
   Parse EDI file by pathname.
 
