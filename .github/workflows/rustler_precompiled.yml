@@ -46,6 +46,11 @@ jobs:
         toolchain: stable
         target: ${{ matrix.job.target }}
 
+    - name: Install musl-tools
+      shell: bash
+      run: |
+        apt-get update && apt-get install musl-tools -y && rustup target add x86_64-unknown-linux-musl && rustup target add aarch64-unknown-linux-musl
+
     - name: Build the project
       id: build-crate
       uses: philss/rustler-precompiled-action@v1.1.0
