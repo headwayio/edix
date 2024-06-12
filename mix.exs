@@ -30,7 +30,8 @@ defmodule Edix.MixProject do
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
       {:rustler_precompiled, "~> 0.7.1", runtime: false},
       {:rustler, ">= 0.0.0", optional: true},
-      {:credo, "~> 1.7", only: [:dev, :test], runtime: false}
+      {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
+      {:jason, "~> 1.2"}
     ]
   end
 
